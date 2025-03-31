@@ -1,0 +1,22 @@
+graph TD
+    subgraph "Enterprise Knowledge Domain"
+        A["Person: John Smith"] -->|WORKS_FOR| B["Company: Acme Corp"]
+        B -->|PRODUCES| C["Product: Widget X"]
+        A -->|CREATED| C
+        C -->|BELONGS_TO| D["Category: Electronics"]
+        E["Person: Jane Doe"] -->|WORKS_FOR| B
+        E -->|MANAGES| A
+        F["Supplier: Tech Parts Inc"] -->|SUPPLIES| B
+        F -->|PROVIDES| G["Component: Circuit Board"]
+        C -->|CONTAINS| G
+        H["Customer: BigRetail"] -->|PURCHASES| C
+        
+        style A fill:#1a2b3c,stroke:#4a9eff
+        style B fill:#2d2d2d,stroke:#ffa726
+        style C fill:#1a2b3c,stroke:#4a9eff
+        style D fill:#2d2d2d,stroke:#ffa726
+        style E fill:#1a2b3c,stroke:#4a9eff
+        style F fill:#2d2d2d,stroke:#ffa726
+        style G fill:#1a2b3c,stroke:#4a9eff
+        style H fill:#2d2d2d,stroke:#ffa726
+    end

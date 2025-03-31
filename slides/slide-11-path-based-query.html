@@ -1,0 +1,19 @@
+<h2>Path-Based Query - Power of Traversal</h2>
+
+<p><strong>Finding connections between entities</strong>:</p>
+
+<p>SPARQL (variable path length):</p>
+<pre><code>SELECT ?person1 ?person2 ?path
+WHERE {
+  ?person1 kg:name "Albert Einstein" .
+  ?person2 kg:name "Stephen Hawking" .
+  ?person1 (kg:influenced)+ ?person2 .
+}
+</code></pre>
+
+<p>Cypher (showing the actual path):</p>
+<pre><code>MATCH path = (p1:Person {name: "Albert Einstein"})-[:INFLUENCED*]-&gt;(p2:Person {name: "Stephen Hawking"})
+RETURN [node in nodes(path) | node.name] as connectionPath
+</code></pre>
+
+<p>Path queries reveal connections that would be extremely difficult to express in traditional query languages, especially with variable-length paths.</p>

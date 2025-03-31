@@ -1,0 +1,91 @@
+<h2>Architectural Layers</h2>
+<div class="mermaid-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: calc(80vh - 120px);">
+    <div class="mermaid">
+        flowchart TD
+            subgraph "Frontend Layer"
+                A1[Recommender System]
+                A2[Search Interface]
+                A3[Analytics Dashboard]
+            end
+
+            subgraph "API Layer"
+                B1[REST API Gateway]
+                B2[SPARQL Endpoint]
+                B3[GraphQL API]
+            end
+
+            subgraph "Core Platform"
+                C1[Graph Database Engine]
+                C2[Inference Engine]
+                C3[Query Processor]
+                C4[Cache Manager]
+            end
+
+            subgraph "Data Sources"
+                D1[Relational DBs]
+                D2[Document Stores]
+                D3[External APIs]
+                D4[File Systems]
+            end
+
+            %% Frontend to API connections
+            A1 --> B1
+            A1 --> B3
+            A2 --> B1
+            A2 --> B2
+            A3 --> B1
+            A3 --> B2
+            A3 --> B3
+
+            %% API to Core connections
+            B1 --> C1
+            B1 --> C3
+            B2 --> C1
+            B2 --> C2
+            B3 --> C1
+            B3 --> C3
+
+            %% Core to Data connections
+            C1 --> D1
+            C1 --> D2
+            C1 --> D3
+            C1 --> D4
+
+            %% Core internal connections
+            C1 <--> C2
+            C2 <--> C3
+            C3 <--> C4
+            C4 <--> C1
+
+            %% Styling
+            style A1 fill:#1a2b3c,stroke:#4a9eff
+            style A2 fill:#1a2b3c,stroke:#4a9eff
+            style A3 fill:#1a2b3c,stroke:#4a9eff
+
+            style B1 fill:#2d2d2d,stroke:#ffa726
+            style B2 fill:#2d2d2d,stroke:#ffa726
+            style B3 fill:#2d2d2d,stroke:#ffa726
+
+            style C1 fill:#1a2b3c,stroke:#4a9eff
+            style C2 fill:#1a2b3c,stroke:#4a9eff
+            style C3 fill:#1a2b3c,stroke:#4a9eff
+            style C4 fill:#1a2b3c,stroke:#4a9eff
+
+            style D1 fill:#2d2d2d,stroke:#ffa726
+            style D2 fill:#2d2d2d,stroke:#ffa726
+            style D3 fill:#2d2d2d,stroke:#ffa726
+            style D4 fill:#2d2d2d,stroke:#ffa726
+
+            classDef subgraphStyle fill:#1a1a1a,stroke:#404040,color:#ffffff
+            class Frontend,API,Core,Data subgraphStyle
+    </div>
+</div>
+<div class="slide-footer" style="margin-top: 20px;">
+    <p>This layered architecture illustrates:</p>
+    <ul style="columns: 2; column-gap: 40px; margin: 0;">
+        <li><strong>Frontend Layer</strong>: User-facing applications</li>
+        <li><strong>API Layer</strong>: Multiple access patterns</li>
+        <li><strong>Core Platform</strong>: Central processing</li>
+        <li><strong>Data Sources</strong>: Diverse data origins</li>
+    </ul>
+</div>

@@ -1,0 +1,21 @@
+<h2>Pattern-Based Query Example</h2>
+
+<p><strong>SPARQL Example (RDF)</strong>:</p>
+<pre><code>PREFIX kg: &lt;http://example.org/ontology/&gt;
+
+SELECT ?researcher ?publication ?field
+WHERE {
+  ?researcher a kg:Researcher .
+  ?publication kg:hasAuthor ?researcher .
+  ?publication kg:field ?field .
+  ?field kg:name "Knowledge Graphs" .
+}
+</code></pre>
+
+<p><strong>Cypher Example (Property Graph)</strong>:</p>
+<pre><code>MATCH (r:Researcher)-[:AUTHORED]-&gt;(p:Publication)-[:IN_FIELD]-&gt;(f:Field)
+WHERE f.name = "Knowledge Graphs"
+RETURN r.name, p.title
+</code></pre>
+
+<p>These queries demonstrate how graph databases allow for intuitive, relationship-focused querying, making complex questions straightforward to express.</p>

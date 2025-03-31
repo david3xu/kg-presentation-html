@@ -1,0 +1,59 @@
+/* Print-friendly settings */
+@media print {
+  body {
+      background-color: white;
+      color: #333;
+  }
+  
+  .container {
+      box-shadow: none;
+      padding: 0;
+      background-color: white;
+  }
+  
+  pre, .mermaid {
+      page-break-inside: avoid;
+  }
+  
+  h1, h2 {
+      color: #1a5276;
+  }
+  
+  .key-insight, .case-study {
+      background-color: #f8f8f8;
+      color: #333;
+  }
+  
+  .slide {
+      page-break-after: always;
+      min-height: auto;
+      height: auto;
+  }
+  
+  .presentation-header, .presentation-footer, .slide-nav {
+      display: none;
+  }
+  
+  table, th, td {
+      border: 1px solid #333;
+  }
+  
+  th {
+      background-color: #f2f2f2;
+      color: #333;
+  }
+  
+  pre {
+      background-color: #f2f2f2;
+      border-left: 3px solid #1a5276;
+      color: #333;
+  }
+  
+  code {
+      color: #333;
+  }
+  
+  .mermaid svg {
+      max-width: 100%;
+  }
+}

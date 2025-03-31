@@ -1,0 +1,88 @@
+<h2>Example Architecture</h2>
+
+<div class="mermaid">
+    flowchart TB
+        %% Main Components with clear relationships
+        subgraph Apps["Applications & APIs"]
+            direction LR
+            A1["Web UI"] --> GW["API Gateway"]
+            A2["Mobile"] --> GW
+            A3["Analytics"] --> GW
+            
+            GW --> |"REST"| S1["REST API"]
+            GW --> |"SPARQL"| S2["SPARQL API"]
+            GW --> |"GraphQL"| S3["GraphQL API"]
+        end
+
+        subgraph Core["Knowledge Graph Core"]
+            direction TB
+            %% Query & Processing
+            QE["Query Engine"] --> IE["Inference Engine"]
+            IE --> GA["Graph Analytics"]
+            
+            %% Storage & Cache
+            DB["Graph Database"] --> QE
+            TS["Triple Store"] --> QE
+            Cache["Query Cache"] --> QE
+            
+            %% Bidirectional relationships
+            QE <--> Cache
+            IE <--> DB
+            GA <--> DB
+        end
+
+        subgraph Data["Data Layer"]
+            direction LR
+            ETL["ETL Pipeline"] --> QM["Quality Monitor"]
+            SP["Stream Processor"] --> QM
+            QM --> SM["Schema Mapper"]
+            
+            %% Data sources
+            RDB[("RDBs")] --> ETL
+            DOC[("Documents")] --> ETL
+            API[("APIs")] --> SP
+            STREAM[("Streams")] --> SP
+        end
+
+        %% Cross-layer connections
+        S1 --> QE
+        S2 --> QE
+        S3 --> QE
+        SM --> DB
+        SM --> TS
+
+        %% Styling
+        classDef apps fill:#1a2b3c,stroke:#4a9eff,color:#fff
+        classDef core fill:#2d2d2d,stroke:#ffa726,color:#fff
+        classDef data fill:#1a2b3c,stroke:#4a9eff,color:#fff
+        classDef gateway fill:#2d2d2d,stroke:#ffa726,color:#fff
+        classDef source fill:#2d2d2d,stroke:#4a9eff,color:#fff
+        classDef subgraphStyle fill:#1a1a1a,stroke:#404040,color:#fff
+
+        %% Apply styles
+        class A1,A2,A3 apps
+        class GW,S1,S2,S3 gateway
+        class QE,IE,GA,DB,TS,Cache core
+        class ETL,SP,QM,SM data
+        class RDB,DOC,API,STREAM source
+        class Apps,Core,Data subgraphStyle
+</div>
+
+<div class="key-insight">
+    <p>💡 <strong>Architecture Highlights</strong>:</p>
+    <ul>
+        <li><strong>Access Layer</strong>: Multi-protocol API access with centralized gateway</li>
+        <li><strong>Core Processing</strong>: Integrated query, inference, and analytics engines</li>
+        <li><strong>Storage</strong>: Hybrid storage with graph DB and triple store</li>
+        <li><strong>Data Integration</strong>: Parallel batch and streaming pipelines</li>
+    </ul>
+</div>
+
+<p><strong>Key Features</strong>:</p>
+<ul>
+    <li>Centralized API gateway for security and routing</li>
+    <li>Hybrid storage for flexibility and performance</li>
+    <li>Integrated caching for query optimization</li>
+    <li>Real-time and batch data processing</li>
+    <li>Built-in quality monitoring and schema mapping</li>
+</ul>
